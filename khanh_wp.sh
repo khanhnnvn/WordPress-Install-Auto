@@ -1,4 +1,6 @@
 #!/bin/bash	
+#apt-get install apache2 php mysql-server php-mysql
+#apt-get install libapache2-mod-php
 function download()
 	{
 	echo "Tao thu muc chua bo cai sample"
@@ -91,11 +93,11 @@ function import()
 }
 echo "Bat dau chay chuong trinh"
 echo "------------------------------------------"
-#download
-#makevhost
-#edit
-#createdb
-#config
+download
+makevhost
+edit
+createdb
+config
 import
 echo "Khoi dong lai chuong trinh cai nao"
 service apache2 restart
