@@ -71,12 +71,31 @@ function config()
 	" > /etc/apache2/sites-enabled/$domain."conf"
 	done < $filename
 }
+function import()
+	{
+	filename="/root/domain.txt"
+        while read line
+        do
+          domain=$line
+        echo "Copy du lieu mau.."
+	cp /root/sample.sql /var/www/$domain
+        echo "Chuyen den thu muc chua sql sample"
+	cd /var/www/$domain
+	echo "Thu hien chinh sua"
+	sed -i "s/epinessne/$domain/;s/epinessne/$domain/;s/epinessne/$domain/" sample.sql
+	echo "Thuc hien import du lieu" $domain
+	mysql -u root -padmin123 $domain < sample.sql
+	echo "Ket thuc ..."
+        done < $filename
+
+}
 echo "Bat dau chay chuong trinh"
 echo "------------------------------------------"
-download
-makevhost
-edit
-createdb
-config
+#download
+#makevhost
+#edit
+#createdb
+#config
+import
 echo "Khoi dong lai chuong trinh cai nao"
 service apache2 restart
